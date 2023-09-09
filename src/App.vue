@@ -99,7 +99,7 @@ export default {
       const colors = ["#b3deff", "#9ec7f7", "#88b1ee", "#739ae6", "#5d83dd"]
       let colorIdx = 0;
 
-      for (let i = 0; i <= numTiles; i++) {
+      for (let i = 1; i <= numTiles; i++) {
         if (colorIdx > 4) colorIdx = 0
         const color = colors[colorIdx]
         colorIdx += 1
@@ -114,8 +114,6 @@ export default {
 
         result.push(newTile)
       }
-
-      console.log(result)
 
       return result
 
@@ -156,8 +154,9 @@ body {
 }
 
 .grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0;
 }
 
 /* Firefox */
