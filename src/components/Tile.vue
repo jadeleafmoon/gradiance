@@ -1,12 +1,12 @@
 <template>
   <div 
     v-show="tile.id !== 0"
-    @click="toggleTile(tile)"
+    @mousedown="toggleTile(tile)"
     :class="{ 'tile': true, 'selected': tile.isSelected }"
     :style="{ backgroundColor: tile.color }"
     draggable="true"
   > 
-    <p class="number" v-show="debugOn"> {{ tile.number }}</p> 
+    <p class="number" v-show="debugOn"> {{ tile.number }} {{ tile.isSelected }}</p> 
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   emits: ['toggleTile'],
   data() {
     return {
-      debugOn: false,
+      debugOn: true,
     }
   },
   methods: {
@@ -47,7 +47,7 @@ export default {
 }
 
 .tile.selected {
-  transform: scale(1.1);
+  transform: scale(1.2);
   background-color: lightblue;
   border-color: lightblue;
 }
