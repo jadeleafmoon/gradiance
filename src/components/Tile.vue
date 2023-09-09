@@ -5,7 +5,7 @@
     :class="{ 'tile': true, 'selected': tile.isSelected }"
     draggable="true"
   > 
-    <p class="number"> {{ tile.number }} {{ tile.isSelected }} </p> 
+    <p class="number"> {{ tile.number }}</p> 
   </div>
 </template>
 
