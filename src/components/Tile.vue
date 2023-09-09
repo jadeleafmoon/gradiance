@@ -1,6 +1,9 @@
 <template>
-  <div class="tile"> 
-    <p class="number" @click="toggleTile(tile)"> {{ tile.number }} </p> 
+  <div 
+    @click="toggleTile(tile)"
+    :class="{ 'tile': true, 'selected': tile.isSelected }"
+  > 
+    <p class="number"> {{ tile.number }} {{ tile.isSelected }} </p> 
   </div>
 </template>
 
@@ -32,8 +35,12 @@ export default {
 }
 
 .tile:hover {
-  background-color: lightblue;
+  border: 4px solid lightblue;
   cursor: pointer;
+}
+
+.tile.selected {
+  background-color: lightblue;
 }
 
 .number {
