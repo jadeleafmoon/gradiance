@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     toggleTile(tile) {
-      console.log("Clicked")
       this.$emit('toggleTile', tile.id)
     }
   }
@@ -32,6 +31,7 @@ export default {
   width: 100px;
   height: 100px;
   border: 2px solid gray;
+  margin: 10px
 }
 
 .tile:hover {
