@@ -32,7 +32,7 @@ export default {
 .tile {
   width: 100px;
   height: 100px;
-  border: 2px solid gray;
+  border: 4px solid gray;
   margin: 10px
 }
 
@@ -43,6 +43,7 @@ export default {
 
 .tile.selected {
   background-color: lightblue;
+  border-color: lightblue;
 }
 
 .number {

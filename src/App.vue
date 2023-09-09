@@ -1,9 +1,6 @@
 <template>
-  <h1>Hi!</h1>
+  <h1>Gradience</h1>
   
-  <input v-model="tile1" type="number"/>
-  <input v-model="tile2" type="number"/>
-  <button @click="switchTiles">Switch</button>
   <div class="grid">
     <Tile 
     v-for="tile in tiles" 
@@ -50,18 +47,18 @@ export default {
 
       let tile1 = this.selectedTiles[0]
       let tile2 = this.selectedTiles[1]
-      let tempPosition1 = tile1.position
-      let tempPosition2 = tile2.position
+      let position1 = tile1.position
+      let position2 = tile2.position
       
-      tile1.position = tempPosition2
-      tile2.position = tempPosition1
+      tile1.position = position2
+      tile2.position = position1
 
       tile1.isSelected = false
       tile2.isSelected = false
 
-      let temp = this.tiles[tempPosition1]
-      this.tiles[tempPosition1] = this.tiles[tempPosition2]
-      this.tiles[tempPosition2] =  temp
+      let temp = this.tiles[position1]
+      this.tiles[position1] = this.tiles[position2]
+      this.tiles[position2] =  temp
 
       this.selectedTiles = []
     },
