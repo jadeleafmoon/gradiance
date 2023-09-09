@@ -1,16 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Hi!</h1>
+  <input />
+  <input />
+  <button @click="switchTiles">Switch</button>
+  <Tile v-for="number in numbers" :number="number" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tile from "./components/Tile.vue"
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { Tile },
+  tile1: 0,
+  tile2: 0,
+  data() {
+    return {
+      numbers: [1, 2, 3]
+    }
+  },
+  methods: {
+    switchTiles() {
+    }
   }
+
 }
 </script>
 
@@ -22,5 +36,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  background: #ddd;
 }
 </style>
