@@ -3,7 +3,11 @@
   <input />
   <input />
   <button @click="switchTiles">Switch</button>
-  <Tile v-for="number in numbers" :number="number" />
+  <Tile 
+    v-for="tile in tiles" 
+    :tile="tile" 
+    :key="tile.id"
+  />
 </template>
 
 <script>
@@ -17,7 +21,12 @@ export default {
   tile2: 0,
   data() {
     return {
-      numbers: [1, 2, 3]
+      numbers: [1, 2, 3],
+      tiles: [ 
+        { number: 1, isSelected: false, id: 1}, 
+        { number: 2, isSelected: false, id: 2}, 
+        { number: 3, isSelected: false, id: 3}, 
+      ]
     }
   },
   methods: {

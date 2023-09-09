@@ -1,11 +1,21 @@
 <template>
-  <div class="tile"> <p class="number"> {{  number }}</p> </div>
+  <div class="tile"> <p class="number" @click="toggleTile"> {{ tile.number }} </p> </div>
 </template>
 
 <script>
 
 export default {
-  props: ['number']
+  props: ['tile'],
+  data() {
+    return {
+      tilesSelected: 0
+    }
+  },
+  methods: {
+    toggleTile() {
+
+    }
+  }
 }
 
 </script>
