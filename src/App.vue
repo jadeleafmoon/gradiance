@@ -121,5 +121,6 @@ body {
 
 .grid {
   display: flex;
+  justify-content: center;
 }
 </style>

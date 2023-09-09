@@ -6,7 +6,7 @@
     :style="{ backgroundColor: tile.color }"
     draggable="true"
   > 
-    <p class="number"> {{ tile.number }}</p> 
+    <p class="number" v-show="debugOn"> {{ tile.number }}</p> 
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   emits: ['toggleTile'],
   data() {
     return {
-      tilesSelected: 0
+      debugOn: false,
     }
   },
   methods: {
@@ -33,15 +33,21 @@ export default {
 .tile {
   width: 100px;
   height: 100px;
+  transition: all .1s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   cursor: pointer;
 }
 
 .tile.selected {
-  transform: scale(1.2);
+  transform: scale(1.1);
   background-color: lightblue;
   border-color: lightblue;
 }
@@ -49,5 +55,6 @@ export default {
 .number {
   font-size: 1.5em;
   font-weight: bold;
+  color: white;
 }
 </style>
