@@ -1,7 +1,9 @@
 <template>
   <div 
+    v-show="tile.id !== 0"
     @click="toggleTile(tile)"
     :class="{ 'tile': true, 'selected': tile.isSelected }"
+    draggable="true"
   > 
     <p class="number"> {{ tile.number }} {{ tile.isSelected }} </p> 
   </div>
@@ -10,7 +12,7 @@
 <script>
 
 export default {
-  props: ['tile'],
+  props: ['tile', 'grid'],
   emits: ['toggleTile'],
   data() {
     return {
