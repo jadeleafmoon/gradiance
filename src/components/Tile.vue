@@ -3,6 +3,7 @@
     v-show="tile.id !== 0"
     @click="toggleTile(tile)"
     :class="{ 'tile': true, 'selected': tile.isSelected }"
+    :style="{ backgroundColor: tile.color }"
     draggable="true"
   > 
     <p class="number"> {{ tile.number }}</p> 
@@ -32,16 +33,15 @@ export default {
 .tile {
   width: 100px;
   height: 100px;
-  border: 4px solid gray;
-  margin: 10px
 }
 
 .tile:hover {
-  border: 4px solid lightblue;
+  transform: scale(1.2);
   cursor: pointer;
 }
 
 .tile.selected {
+  transform: scale(1.2);
   background-color: lightblue;
   border-color: lightblue;
 }

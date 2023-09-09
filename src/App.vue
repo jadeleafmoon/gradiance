@@ -1,9 +1,9 @@
 <template>
   <h1>Gradience</h1>
 
-  <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
+  <p v-show="debug"> Correct tiles: {{ numberOfCorrectTiles }}</p>
 
-  <h2 v-show="gameWon">You win! 😸</h2>
+  
   
   <div class="grid">
     <Tile 
@@ -13,7 +13,10 @@
     @toggle-tile="toggleTile(tile.id)"
     />
   </div>
-  <div class="debug" v-show="true">
+
+  <h2 v-show="gameWon">You win! 😸</h2>
+
+  <div class="debug" v-show="debug">
     <div 
       class="debug-item" 
       v-for="tile in tiles"
@@ -33,14 +36,15 @@ export default {
   components: { Tile },
   data() {
     return {
+      debug: false,
       selectedTiles: [],
       tiles: [ 
-        { number: 0, position: 0, isSelected: false, id: 0},
-        { number: 2, position: 1, isSelected: false, id: 2}, 
-        { number: 4, position: 2, isSelected: false, id: 4}, 
-        { number: 5, position: 3, isSelected: false, id: 5}, 
-        { number: 3, position: 4, isSelected: false, id: 3}, 
-        { number: 1, position: 5, isSelected: false, id: 1}, 
+        { number: 0, position: 0, isSelected: false, color: "black", id: 0},
+        { number: 2, position: 1, isSelected: false, color: "#9ec7f7", id: 2}, 
+        { number: 4, position: 2, isSelected: false, color: "#739ae6", id: 4}, 
+        { number: 5, position: 3, isSelected: false, color: "#5d83dd", id: 5}, 
+        { number: 3, position: 4, isSelected: false, color: "#88b1ee", id: 3}, 
+        { number: 1, position: 5, isSelected: false, color: "#b3deff", id: 1}, 
       ],
     }
   },
@@ -86,7 +90,6 @@ export default {
   },
   computed: {
     numberOfCorrectTiles() {
-      console.log("inside numberOfCorrectTiles")
       let counter = 0;
       for (let i = 1; i < this.tiles.length; i++) {
         const tile = this.tiles[i];
@@ -113,7 +116,7 @@ export default {
 }
 
 body {
-  background: #ddd;
+  background: #efefef;
 }
 
 .grid {
