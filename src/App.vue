@@ -40,17 +40,16 @@ export default {
       selectedTiles: [],
       tiles: [ 
         { number: 0, position: 0, isSelected: false, color: "black", id: 0},
+        { number: 1, position: 5, isSelected: false, color: "#b3deff", id: 1}, 
         { number: 2, position: 1, isSelected: false, color: "#9ec7f7", id: 2}, 
+        { number: 3, position: 4, isSelected: false, color: "#88b1ee", id: 3}, 
         { number: 4, position: 2, isSelected: false, color: "#739ae6", id: 4}, 
         { number: 5, position: 3, isSelected: false, color: "#5d83dd", id: 5}, 
-        { number: 3, position: 4, isSelected: false, color: "#88b1ee", id: 3}, 
-        { number: 1, position: 5, isSelected: false, color: "#b3deff", id: 1}, 
       ],
     }
   },
   methods: {
     switchTiles() {
-
       let tile1 = this.selectedTiles[0]
       let tile2 = this.selectedTiles[1]
       let position1 = tile1.position
@@ -86,6 +85,40 @@ export default {
       if (this.selectedTiles.length === 2) {
           this.switchTiles()
       }
+    },
+    generateTiles() {
+      const result = [{
+        number: 0,
+        position: 0,
+        isSelected: false,
+        color: 'black',
+        id: 0
+      }]
+
+      const numTiles = 25
+      const colors = ["#b3deff", "#9ec7f7", "#88b1ee", "#739ae6", "#5d83dd"]
+      let colorIdx = 0;
+
+      for (let i = 0; i <= numTiles; i++) {
+        if (colorIdx > 4) colorIdx = 0
+        const color = colors[colorIdx]
+        colorIdx += 1
+        
+        const newTile = {
+          number: i,
+          position: i,
+          isSelected: false,
+          color: color,
+          id: i
+        }
+
+        result.push(newTile)
+      }
+
+      console.log(result)
+
+      return result
+
     }
   },
   computed: {
@@ -101,6 +134,9 @@ export default {
     gameWon() {
       return this.numberOfCorrectTiles === this.tiles.length - 1
     }
+  },
+  beforeMount() {
+    this.tiles = this.generateTiles()
   }
 }
 </script>

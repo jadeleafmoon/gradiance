@@ -6,7 +6,7 @@
     :style="{ backgroundColor: tile.color }"
     draggable="true"
   > 
-    <p class="number" v-show="debugOn"> {{ tile.number }} {{ tile.isSelected }}</p> 
+    <p class="number" v-show="debugOn"> {{ tile.number }}</p> 
   </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
 }
 
 .number {
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: bold;
   color: white;
 }
