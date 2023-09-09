@@ -1,19 +1,23 @@
 <template>
-  <div class="tile"> <p class="number" @click="toggleTile"> {{ tile.number }} </p> </div>
+  <div class="tile"> 
+    <p class="number" @click="toggleTile(tile)"> {{ tile.number }} </p> 
+  </div>
 </template>
 
 <script>
 
 export default {
   props: ['tile'],
+  emits: ['toggleTile'],
   data() {
     return {
       tilesSelected: 0
     }
   },
   methods: {
-    toggleTile() {
-
+    toggleTile(tile) {
+      console.log("Clicked")
+      this.$emit('toggleTile', tile.id)
     }
   }
 }
@@ -25,6 +29,11 @@ export default {
   width: 100px;
   height: 100px;
   border: 2px solid gray;
+}
+
+.tile:hover {
+  background-color: lightblue;
+  cursor: pointer;
 }
 
 .number {

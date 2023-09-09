@@ -7,6 +7,7 @@
     v-for="tile in tiles" 
     :tile="tile" 
     :key="tile.id"
+    @toggle-tile="toggleTile"
   />
 </template>
 
@@ -23,14 +24,18 @@ export default {
     return {
       numbers: [1, 2, 3],
       tiles: [ 
-        { number: 1, isSelected: false, id: 1}, 
-        { number: 2, isSelected: false, id: 2}, 
-        { number: 3, isSelected: false, id: 3}, 
+        { number: 1, isSelected: false, selected: false, id: 1}, 
+        { number: 2, isSelected: false, selected: false, id: 2}, 
+        { number: 3, isSelected: false, selected: false, id: 3}, 
       ]
     }
   },
   methods: {
     switchTiles() {
+    },
+    toggleTile(targetTile) {
+      const tileToChange = this.tiles.filter(currentTile => currentTile.id === targetTile.id)
+      tileToChange.selected = true
     }
   }
 
