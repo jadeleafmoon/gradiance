@@ -1,5 +1,9 @@
 <template>
   <h1>Gradience</h1>
+
+  <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
+
+  <h2 v-show="gameWon">You win! 😸</h2>
   
   <div class="grid">
     <Tile 
@@ -29,8 +33,6 @@ export default {
   components: { Tile },
   data() {
     return {
-      tile1: 0,
-      tile2: 0,
       selectedTiles: [],
       tiles: [ 
         { number: 0, position: 0, isSelected: false, id: 0},
@@ -82,6 +84,21 @@ export default {
       }
     }
   },
+  computed: {
+    numberOfCorrectTiles() {
+      console.log("inside numberOfCorrectTiles")
+      let counter = 0;
+      for (let i = 1; i < this.tiles.length; i++) {
+        const tile = this.tiles[i];
+        if (tile.number === i) counter++;
+      }
+
+      return counter
+    },
+    gameWon() {
+      return this.numberOfCorrectTiles === this.tiles.length - 1
+    }
+  }
 }
 </script>
 
