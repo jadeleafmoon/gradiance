@@ -1,5 +1,5 @@
 <template>
-  <h1>Gradience</h1>
+  <h1>Gradiance</h1>
 
   <p v-show="debug"> Correct tiles: {{ numberOfCorrectTiles }}</p>
 
@@ -122,5 +122,19 @@ body {
 .grid {
   display: flex;
   justify-content: center;
+}
+
+/* Firefox */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Chrome */
+@media (forced-colors: active) {
+    :root {
+        color-scheme: light;
+    }
 }
 </style>
