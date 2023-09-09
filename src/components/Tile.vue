@@ -31,8 +31,7 @@ export default {
 
 <style>
 .tile {
-  width: 100px;
-  height: 100px;
+  width: 20vw;
   transition: all .1s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
