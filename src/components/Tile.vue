@@ -1,11 +1,13 @@
 <template>
   <div 
     @mousedown="toggleTile(tile)"
-    :class="{ 'tile': true, 'selected': tile.isSelected }"
+    :class="{ 'tile': true, 'selected': tile.isSelected, 'locked': tile.isLocked }"
     :style="{ backgroundColor: tile.color }"
     draggable="true"
+
   > 
-    <p class="number" v-show="debugOn"> {{ tile.number }}</p> 
+    <p class="number" v-if="tile.isLocked">O</p>
+    <p class="number" v-else> . </p> 
   </div>
 </template>
 
@@ -50,6 +52,10 @@ export default {
   transform: scale(1.2);
   background-color: lightblue;
   border-color: lightblue;
+}
+
+.tile.locked {
+  pointer-events: none;
 }
 
 .number {

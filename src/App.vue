@@ -6,9 +6,7 @@
   <div v-show="debugOn">
     <button @click="almostSolve">Solve</button>
     <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
-
   </div>
-
   
   
   <div class="grid">
@@ -98,7 +96,15 @@ export default {
         "#BBDF7D", "#B4BF85", "#ADA090", "#A9819C", "#A762AB",
         "#9CD792", "#95B697", "#9294A1", "#9073AB", "#9052B5",
         "#80D0A9", "#79ACAE", "#7689B2", "#7566B7", "#7743BF"
-      ];
+      ]
+
+      const lockedTiles = [
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
+      ]
 
       let colorIdx = 0
 
@@ -106,37 +112,109 @@ export default {
 
         const currentColor = colors[i]
 
+        const isLocked = lockedTiles[i] === 1
+
         const newTile = {
           number: i,
           position: i,
           isSelected: false,
           color: currentColor,
-          id: i
+          id: i,
+          isLocked: isLocked,
         }
 
         result.push(newTile)
       }
 
-      result = this.shuffleTiles(result)
+      result = this.shuffleTiles(result, lockedTiles)
       
       return result
     },
-    shuffleTiles(arr) {
+    shuffleArray(arr) {
       let copy = arr.slice()
 
       for (let i = 0; i < copy.length; i++) {
         const randomIndex = Math.floor(Math.random() * arr.length)
 
-        let tempPosition = i
-        copy[i].position = randomIndex
-        copy[randomIndex].position = i
-
         let temp = copy[i]
         copy[i] = copy[randomIndex]
         copy[randomIndex] = temp
-        
+
       }
 
+      return copy
+    },
+    shuffleTiles(arr, lockedTiles) {
+      console.log("shuffleTile")
+
+
+      let result = []
+      let copy = arr.slice()
+
+      for (let i = 0; i < copy.length; i++) {
+        let isLocked = lockedTiles[i] === 1
+
+        
+        if (!isLocked) {
+          let swapped = false
+          // swap with random unlocked
+          while (!swapped) {
+            const randomIndex = Math.floor(Math.random() * arr.length)
+            if (lockedTiles[randomIndex] !== 1) {
+
+              // swap tiles 
+              let temp = copy[i]
+              let tempPosition = copy[i].position
+
+              copy[i].position = copy[randomIndex].position
+              copy[randomIndex].position = tempPosition
+
+              copy[i] = copy[randomIndex]
+              copy[randomIndex] = temp
+              swapped = true
+            } 
+          }
+          
+
+        }
+
+      }
+
+      // const unlockedTilesList = []
+
+      // for (let i = 0; i < lockedTiles.length; i++) {
+      //   const value = lockedTiles[i]
+      //   if (value === 0) {
+      //     unlockedTilesList.push(i)
+      //   }
+      // }
+
+      // const shuffledUnlockedTilesList = this.shuffleTiles(unlockedTilesList)
+
+      // for (let i = 0; i < shuffledUnlockedTilesList.length; i++) {
+      //   const value = shuffledUnlockedTilesList[i]
+
+      //   copy[value] = arr[]
+
+      // }
+
+
+      // Work tile shuffle
+      // for (let i = 0; i < copy.length; i++) {
+
+      //   const randomIndex = Math.floor(Math.random() * arr.length)
+
+      //   let tempPosition = i
+      //   copy[i].position = randomIndex
+      //   copy[randomIndex].position = i
+
+      //   let temp = copy[i]
+      //   copy[i] = copy[randomIndex]
+      //   copy[randomIndex] = temp
+        
+      // }
+
+      console.log("copy", copy)
       return copy
     },
     
