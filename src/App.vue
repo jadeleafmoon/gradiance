@@ -18,6 +18,7 @@
   <h2 v-show="gameWon">You win! 😸</h2>
 
   <div class="debug" v-show="debug">
+    <pre>{{ selectedTiles }}</pre>
     <p> array length: {{ tiles.length }} </p>
     <div 
       class="debug-item" 
@@ -95,7 +96,6 @@ export default {
       ];
 
       let colorIdx = 0
-      let shuffledColors = this.shuffleArray(colors)
 
       for (let i = 0; i < colors.length; i++) {
 
@@ -112,21 +112,24 @@ export default {
         result.push(newTile)
       }
 
-      result = this.shuffleArray(result)
-      console.log(result)
+      result = this.shuffleTiles(result)
       
       return result
     },
-    shuffleArray(arr) {
-      let result = [];
+    shuffleTiles(arr) {
       let copy = arr.slice()
 
       for (let i = 0; i < copy.length; i++) {
         const randomIndex = Math.floor(Math.random() * arr.length)
 
+        let tempPosition = i
+        copy[i].position = randomIndex
+        copy[randomIndex].position = i
+
         let temp = copy[i]
         copy[i] = copy[randomIndex]
         copy[randomIndex] = temp
+        
       }
 
       return copy
