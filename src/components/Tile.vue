@@ -1,6 +1,5 @@
 <template>
   <div 
-    v-show="tile.id !== 0"
     @mousedown="toggleTile(tile)"
     :class="{ 'tile': true, 'selected': tile.isSelected }"
     :style="{ backgroundColor: tile.color }"

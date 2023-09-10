@@ -18,13 +18,15 @@
   <h2 v-show="gameWon">You win! 😸</h2>
 
   <div class="debug" v-show="debug">
+    <p> array length: {{ tiles.length }} </p>
     <div 
       class="debug-item" 
       v-for="tile in tiles"
       v-show="tile.id !== 0"
     > 
-      {{ tile.id }} , position: {{ tile.position }}
+      {{ tile.id }} , position: {{ tile.position }}, 
     </div>
+    
   </div>
 
 </template>
@@ -38,7 +40,7 @@ export default {
   components: { Tile },
   data() {
     return {
-      debug: false,
+      debug: true,
       selectedTiles: [],
       tiles: [],
     }
@@ -82,15 +84,8 @@ export default {
       }
     },
     generateTiles() {
-      let result = [{
-        number: 0,
-        position: 0,
-        isSelected: false,
-        color: 'black',
-        id: 0
-      }]
+      let result = []
 
-      const numTiles = 25
       const colors = [
         "#fbef5e", "#F0D363", "#E7B872", "#DD9C84", "#D5819A",
         "#DAE769", "#D1C972", "#CAAB80", "#C38E90", "#BD71A2",
@@ -98,12 +93,11 @@ export default {
         "#9CD792", "#95B697", "#9294A1", "#9073AB", "#9052B5",
         "#80D0A9", "#79ACAE", "#7689B2", "#7566B7", "#7743BF"
       ];
-      colors.unshift('black')
 
       let colorIdx = 0
       let shuffledColors = this.shuffleArray(colors)
 
-      for (let i = 1; i <= numTiles; i++) {
+      for (let i = 0; i < colors.length; i++) {
 
         const currentColor = colors[i]
 
@@ -154,7 +148,6 @@ export default {
   },
   beforeMount() {
     this.tiles = this.generateTiles()
-    console.log("before")
   }
 }
 </script>
