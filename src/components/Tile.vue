@@ -31,13 +31,15 @@ export default {
 
 <style>
 .tile {
-  width: 20vw;
+  /* width: 15vw;
+  height: 15vw; */
   transition: all .1s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .tile:hover {

@@ -7,10 +7,11 @@
   
   <div class="grid">
     <Tile 
-    v-for="tile in tiles" 
-    :tile="tile" 
-    :key="tile.id"
-    @toggle-tile="toggleTile(tile.id)"
+      v-for="tile in tiles" 
+      :tile="tile" 
+      :key="tile.id"
+      class="tile"
+      @toggle-tile="toggleTile(tile.id)"
     />
   </div>
 
@@ -21,7 +22,8 @@
       class="debug-item" 
       v-for="tile in tiles"
       v-show="tile.id !== 0"
-    > {{ tile.id }} , position: {{ tile.position }}
+    > 
+      {{ tile.id }} , position: {{ tile.position }}
     </div>
   </div>
 
@@ -38,14 +40,7 @@ export default {
     return {
       debug: false,
       selectedTiles: [],
-      tiles: [ 
-        { number: 0, position: 0, isSelected: false, color: "black", id: 0},
-        { number: 1, position: 5, isSelected: false, color: "#b3deff", id: 1}, 
-        { number: 2, position: 1, isSelected: false, color: "#9ec7f7", id: 2}, 
-        { number: 3, position: 4, isSelected: false, color: "#88b1ee", id: 3}, 
-        { number: 4, position: 2, isSelected: false, color: "#739ae6", id: 4}, 
-        { number: 5, position: 3, isSelected: false, color: "#5d83dd", id: 5}, 
-      ],
+      tiles: [],
     }
   },
   methods: {
@@ -87,7 +82,7 @@ export default {
       }
     },
     generateTiles() {
-      const result = [{
+      let result = [{
         number: 0,
         position: 0,
         isSelected: false,
@@ -96,28 +91,52 @@ export default {
       }]
 
       const numTiles = 25
-      const colors = ["#b3deff", "#9ec7f7", "#88b1ee", "#739ae6", "#5d83dd"]
-      let colorIdx = 0;
+      const colors = [
+        "#fbef5e", "#F0D363", "#E7B872", "#DD9C84", "#D5819A",
+        "#DAE769", "#D1C972", "#CAAB80", "#C38E90", "#BD71A2",
+        "#BBDF7D", "#B4BF85", "#ADA090", "#A9819C", "#A762AB",
+        "#9CD792", "#95B697", "#9294A1", "#9073AB", "#9052B5",
+        "#80D0A9", "#79ACAE", "#7689B2", "#7566B7", "#7743BF"
+      ];
+      colors.unshift('black')
+
+      let colorIdx = 0
+      let shuffledColors = this.shuffleArray(colors)
 
       for (let i = 1; i <= numTiles; i++) {
-        if (colorIdx > 4) colorIdx = 0
-        const color = colors[colorIdx]
-        colorIdx += 1
-        
+
+        const currentColor = colors[i]
+
         const newTile = {
           number: i,
           position: i,
           isSelected: false,
-          color: color,
+          color: currentColor,
           id: i
         }
 
         result.push(newTile)
       }
 
+      result = this.shuffleArray(result)
+      console.log(result)
+      
       return result
+    },
+    shuffleArray(arr) {
+      let result = [];
+      let copy = arr.slice()
 
-    }
+      for (let i = 0; i < copy.length; i++) {
+        const randomIndex = Math.floor(Math.random() * arr.length)
+
+        let temp = copy[i]
+        copy[i] = copy[randomIndex]
+        copy[randomIndex] = temp
+      }
+
+      return copy
+    },
   },
   computed: {
     numberOfCorrectTiles() {
@@ -135,6 +154,7 @@ export default {
   },
   beforeMount() {
     this.tiles = this.generateTiles()
+    console.log("before")
   }
 }
 </script>
@@ -155,21 +175,26 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 0;
+}
+
+.tile {
+  /* width: 15vw;
+  height: 15vw; */
 }
 
 /* Firefox */
 @media (prefers-color-scheme: dark) {
     :root {
-        color-scheme: light;
+        color-scheme: light only;
     }
 }
 
 /* Chrome */
 @media (forced-colors: active) {
     :root {
-        color-scheme: light;
+        color-scheme: light only;
     }
 }
 </style>
