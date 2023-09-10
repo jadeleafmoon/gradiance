@@ -1,6 +1,8 @@
 <template>
   <h1>Gradiance</h1>
 
+  <h2 v-show="gameWon">You win! 😸</h2>
+
   <div v-show="debugOn">
     <button @click="almostSolve">Solve</button>
     <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
@@ -19,7 +21,7 @@
     />
   </div>
 
-  <h2 v-show="gameWon">You win! 😸</h2>
+
 
   <div class="debugOn" v-show="debugOn">
     <pre>{{ selectedTiles }}</pre>
@@ -147,7 +149,6 @@ export default {
         result[correctPosition] = this.tiles[i]
       }
 
-      console.log("result of solve", result)
       this.tiles = result
 
       return result
