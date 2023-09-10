@@ -6,8 +6,8 @@
     draggable="true"
 
   > 
-    <p class="number" v-if="tile.isLocked">O</p>
-    <p class="number" v-else> . </p> 
+    <p class="number" v-if="tile.isLocked">.</p>
+    <p class="number" v-else> {{ " " }} </p> 
   </div>
 </template>
 

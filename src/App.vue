@@ -146,6 +146,7 @@ export default {
     },
     shuffleTiles(arr, lockedTiles) {
 
+
       let result = []
       let copy = arr.slice()
 
