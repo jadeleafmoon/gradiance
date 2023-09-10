@@ -145,8 +145,6 @@ export default {
       return copy
     },
     shuffleTiles(arr, lockedTiles) {
-      console.log("shuffleTile")
-
 
       let result = []
       let copy = arr.slice()
@@ -157,7 +155,7 @@ export default {
         
         if (!isLocked) {
           let swapped = false
-          // swap with random unlocked
+          // swap with random unlocked tile
           while (!swapped) {
             const randomIndex = Math.floor(Math.random() * arr.length)
             if (lockedTiles[randomIndex] !== 1) {
@@ -179,40 +177,6 @@ export default {
         }
 
       }
-
-      // const unlockedTilesList = []
-
-      // for (let i = 0; i < lockedTiles.length; i++) {
-      //   const value = lockedTiles[i]
-      //   if (value === 0) {
-      //     unlockedTilesList.push(i)
-      //   }
-      // }
-
-      // const shuffledUnlockedTilesList = this.shuffleTiles(unlockedTilesList)
-
-      // for (let i = 0; i < shuffledUnlockedTilesList.length; i++) {
-      //   const value = shuffledUnlockedTilesList[i]
-
-      //   copy[value] = arr[]
-
-      // }
-
-
-      // Work tile shuffle
-      // for (let i = 0; i < copy.length; i++) {
-
-      //   const randomIndex = Math.floor(Math.random() * arr.length)
-
-      //   let tempPosition = i
-      //   copy[i].position = randomIndex
-      //   copy[randomIndex].position = i
-
-      //   let temp = copy[i]
-      //   copy[i] = copy[randomIndex]
-      //   copy[randomIndex] = temp
-        
-      // }
 
       console.log("copy", copy)
       return copy
