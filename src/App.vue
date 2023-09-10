@@ -1,7 +1,11 @@
 <template>
   <h1>Gradiance</h1>
 
-  <p v-show="debug"> Correct tiles: {{ numberOfCorrectTiles }}</p>
+  <div v-show="debugOn">
+    <button @click="almostSolve">Solve</button>
+    <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
+
+  </div>
 
   
   
@@ -17,13 +21,12 @@
 
   <h2 v-show="gameWon">You win! 😸</h2>
 
-  <div class="debug" v-show="debug">
+  <div class="debugOn" v-show="debugOn">
     <pre>{{ selectedTiles }}</pre>
     <p> array length: {{ tiles.length }} </p>
     <div 
-      class="debug-item" 
+      class="debugOn-item" 
       v-for="tile in tiles"
-      v-show="tile.id !== 0"
     > 
       {{ tile.id }} , position: {{ tile.position }}, 
     </div>
@@ -41,7 +44,7 @@ export default {
   components: { Tile },
   data() {
     return {
-      debug: true,
+      debugOn: true,
       selectedTiles: [],
       tiles: [],
     }
@@ -134,11 +137,26 @@ export default {
 
       return copy
     },
+    
+    almostSolve() {
+      let result = []
+
+      for (let i = 0; i < this.tiles.length; i++) {
+        let correctPosition = this.tiles[i].number
+        this.tiles[i].position = correctPosition
+        result[correctPosition] = this.tiles[i]
+      }
+
+      console.log("result of solve", result)
+      this.tiles = result
+
+      return result
+    }
   },
   computed: {
     numberOfCorrectTiles() {
       let counter = 0;
-      for (let i = 1; i < this.tiles.length; i++) {
+      for (let i = 0; i < this.tiles.length; i++) {
         const tile = this.tiles[i];
         if (tile.number === i) counter++;
       }
@@ -146,7 +164,7 @@ export default {
       return counter
     },
     gameWon() {
-      return this.numberOfCorrectTiles === this.tiles.length - 1
+      return this.numberOfCorrectTiles === this.tiles.length
     }
   },
   beforeMount() {
