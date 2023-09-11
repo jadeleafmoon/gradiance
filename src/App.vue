@@ -3,11 +3,7 @@
 
   <h2 v-show="gameWon">You win! 😸</h2>
 
-  <div v-show="debugOn">
-    <button @click="almostSolve">Solve</button>
-    <p> Correct tiles: {{ numberOfCorrectTiles }}</p>
-  </div>
-  
+  <button @click="solveGame" style="margin-bottom: 20px;">Solve</button>
   
   <div class="grid">
     <Tile 
@@ -44,7 +40,7 @@ export default {
   components: { Tile },
   data() {
     return {
-      debugOn: true,
+      debugOn: false,
       selectedTiles: [],
       tiles: [],
     }
@@ -183,7 +179,7 @@ export default {
       return copy
     },
     
-    almostSolve() {
+    solveGame() {
       let result = []
 
       for (let i = 0; i < this.tiles.length; i++) {
