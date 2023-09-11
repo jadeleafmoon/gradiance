@@ -3,7 +3,7 @@
 
   <h2 v-show="gameWon">You win! 😸</h2>
 
-  <button>Play again</button>
+  <button @click="playAgain">Play again</button>
   <button @click="solveGame">Solve</button>
   <button @click="toggleDebug" >Debug</button>
   
@@ -46,6 +46,7 @@ export default {
       debugOn: false,
       selectedTiles: [],
       tiles: [],
+      colorPaletteIdx: 0,
     }
   },
   methods: {
@@ -89,9 +90,16 @@ export default {
     generateTiles() {
       let result = []
 
-      const randomIndex = Math.floor(Math.random() * (colorPalettes.length - 1))
-      
-      const colors = colorPalettes[randomIndex]
+      // const randomIndex = Math.floor(Math.random() * (colorPalettes.length - 1))
+
+      const colors = colorPalettes[this.colorPaletteIdx]
+
+      if (this.colorPaletteIdx === colorPalettes.length - 1) {
+        this.colorPaletteIdx = 0
+      } else {
+        this.colorPaletteIdx += 1
+      }
+ 
 
       const lockedTiles = [
         1, 1, 1, 1, 1,
@@ -101,7 +109,6 @@ export default {
         1, 1, 1, 1, 1,
       ]
 
-      let colorIdx = 0
 
       for (let i = 0; i < colors.length; i++) {
 
@@ -194,6 +201,10 @@ export default {
     toggleDebug() {
       this.debugOn = !this.debugOn
     },
+    playAgain() {
+      this.selectedTiles = []
+      this.tiles = this.generateTiles()
+    }
   },
   computed: {
     numberOfCorrectTiles() {
