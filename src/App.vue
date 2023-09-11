@@ -19,25 +19,6 @@
 
     <button @click="playAgain" v-show="gameWon">Play again</button>
 
-    <br>
-
-    <button @click="solveGame">Solve</button>
-    <button @click="toggleDebug" >Debug</button>
-
-
-
-
-    <div class="debugOn" v-show="debugOn">
-      <pre>{{ selectedTiles }}</pre>
-      <p> array length: {{ tiles.length }} </p>
-      <div 
-        class="debugOn-item" 
-        v-for="tile in tiles"
-      > 
-        {{ tile.id }} , position: {{ tile.position }}, 
-      </div>
-    </div>
-
   </div>
 
 
