@@ -11,3 +11,7 @@ npm install
 ```
 npm run serve
 ```
+
+### How to Play
+
+Click on two tiles to swap them. Put the tiles in the correct position according to their color.
