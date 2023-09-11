@@ -35,6 +35,7 @@
 
 <script>
 import Tile from "./components/Tile.vue"
+import colorPalettes from "./assets/colorPalettes.js"
 
 
 export default {
@@ -88,13 +89,7 @@ export default {
     generateTiles() {
       let result = []
 
-      const colors = [
-        "#fbef5e", "#F0D363", "#E7B872", "#DD9C84", "#D5819A",
-        "#DAE769", "#D1C972", "#CAAB80", "#C38E90", "#BD71A2",
-        "#BBDF7D", "#B4BF85", "#ADA090", "#A9819C", "#A762AB",
-        "#9CD792", "#95B697", "#9294A1", "#9073AB", "#9052B5",
-        "#80D0A9", "#79ACAE", "#7689B2", "#7566B7", "#7743BF"
-      ]
+      const colors = colorPalettes[2]
 
       const lockedTiles = [
         1, 1, 1, 1, 1,

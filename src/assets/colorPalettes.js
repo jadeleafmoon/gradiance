@@ -23,3 +23,7 @@ const colors4 = [
   "#AADFC8", "#9AC5B9", "#8AABAA", "#7A919A", "#6A778B",
   "#91EDBE", "#80D3B3", "#6FB9A7", "#5E9F9C", "#4D8590"
 ];
+
+const colorPalettes = [colors2, colors3, colors4];
+
+export default colorPalettes;
