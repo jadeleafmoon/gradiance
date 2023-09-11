@@ -4,6 +4,7 @@
   <h2 v-show="gameWon">You win! 😸</h2>
 
   <button @click="solveGame" style="margin-bottom: 20px;">Solve</button>
+  <button @click="toggleDebug" >Debug</button>
   
   <div class="grid">
     <Tile 
@@ -191,7 +192,10 @@ export default {
       this.tiles = result
 
       return result
-    }
+    },
+    toggleDebug() {
+      this.debugOn = !this.debugOn
+    },
   },
   computed: {
     numberOfCorrectTiles() {
@@ -236,6 +240,12 @@ body {
 .tile {
   /* width: 15vw;
   height: 15vw; */
+}
+
+button {
+  padding: 5px 5px;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
 }
 
 /* Firefox */
