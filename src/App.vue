@@ -111,7 +111,7 @@ export default {
       }
  
 
-      let randomIndex = Math.floor(Math.random() * (LockedTilesPatterns.length - 1))
+      let randomIndex = Math.floor(Math.random() * (LockedTilesPatterns.length))
 
       if (this.firstGame) {
         randomIndex = 0
