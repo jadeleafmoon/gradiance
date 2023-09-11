@@ -240,6 +240,7 @@ body {
   margin: 10px auto;
   padding: 5px 25px;
   text-align: center;
+  
 }
 
 
@@ -248,7 +249,6 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 0;
   aspect-ratio: 1 / 1;
-
 }
 
 .tile {
@@ -264,6 +264,7 @@ button {
 }
 
 .game-title {
+  font-size: 2.5em;
   text-transform: uppercase;
   /* color: #666; */
   letter-spacing: 0.15em;
