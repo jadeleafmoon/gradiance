@@ -46,8 +46,6 @@ export default {
 
 .tile.selected {
   transform: scale(1.2);
-  background-color: lightblue;
-  border-color: lightblue;
 }
 
 .tile.locked {
@@ -59,4 +57,5 @@ export default {
   font-weight: bold;
   color: white;
 }
+
 </style>
