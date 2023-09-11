@@ -3,7 +3,8 @@
 
   <h2 v-show="gameWon">You win! 😸</h2>
 
-  <button @click="playAgain">Play again</button>
+  <button @click="playAgain" v-show="gameWon">Play again</button>
+  <br>
   <button @click="solveGame">Solve</button>
   <button @click="toggleDebug" >Debug</button>
   
@@ -35,7 +36,8 @@
 
 <script>
 import Tile from "./components/Tile.vue"
-import colorPalettes from "./assets/colorPalettes.js"
+import ColorPalettes from "./assets/ColorPalettes.js"
+import LockedTilesPatterns from "./assets/LockedTilesPatterns"
 
 
 export default {
@@ -44,6 +46,7 @@ export default {
   data() {
     return {
       debugOn: false,
+      firstGame: true,
       selectedTiles: [],
       tiles: [],
       colorPaletteIdx: 0,
@@ -90,25 +93,23 @@ export default {
     generateTiles() {
       let result = []
 
-      // const randomIndex = Math.floor(Math.random() * (colorPalettes.length - 1))
+      const colors = ColorPalettes[this.colorPaletteIdx]
 
-      const colors = colorPalettes[this.colorPaletteIdx]
-
-      if (this.colorPaletteIdx === colorPalettes.length - 1) {
+      if (this.colorPaletteIdx === ColorPalettes.length - 1) {
         this.colorPaletteIdx = 0
       } else {
         this.colorPaletteIdx += 1
       }
  
 
-      const lockedTiles = [
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-      ]
+      let randomIndex = Math.floor(Math.random() * (LockedTilesPatterns.length - 1))
+      
+      if (this.firstGame) {
+        randomIndex = 0
+        this.firstGame = false
+      }
 
+      const lockedTiles = LockedTilesPatterns[randomIndex]
 
       for (let i = 0; i < colors.length; i++) {
 
@@ -181,7 +182,6 @@ export default {
 
       }
 
-      console.log("copy", copy)
       return copy
     },
     
