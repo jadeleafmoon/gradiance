@@ -3,7 +3,8 @@
 
   <h2 v-show="gameWon">You win! 😸</h2>
 
-  <button @click="solveGame" style="margin-bottom: 20px;">Solve</button>
+  <button>Play again</button>
+  <button @click="solveGame">Solve</button>
   <button @click="toggleDebug" >Debug</button>
   
   <div class="grid">
@@ -244,8 +245,9 @@ body {
 
 button {
   padding: 5px 5px;
-  margin: 0 5px 0 5px;
+  margin: 0 5px 10px 5px;
   cursor: pointer;
+
 }
 
 /* Firefox */
