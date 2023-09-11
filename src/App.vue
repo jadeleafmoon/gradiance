@@ -1,39 +1,45 @@
 <template>
-  <h1>Gradiance</h1>
+  <div class="container">
+    <h1 class="game-title">Gradiance</h1>
 
-  <h2 v-show="gameWon">You win! 😸</h2>
+    <div class="grid-wrapper">
+      <div class="grid">
+        <Tile 
+          v-for="tile in tiles" 
+          :tile="tile" 
+          :key="tile.id"
+          class="tile"
+          @toggle-tile="toggleTile(tile.id)"
+        />
+      </div>
 
-  <button @click="playAgain" v-show="gameWon">Play again</button>
-  <br>
-  <!-- <button @click="solveGame">Solve</button>
-  <button @click="toggleDebug" >Debug</button> -->
-  
-  <div class="wrapper">
-    <div class="grid">
-      <Tile 
-        v-for="tile in tiles" 
-        :tile="tile" 
-        :key="tile.id"
-        class="tile"
-        @toggle-tile="toggleTile(tile.id)"
-      />
     </div>
+
+    <h2 v-show="gameWon">You win! 😸</h2>
+
+    <button @click="playAgain" v-show="gameWon">Play again</button>
+
+    <br>
+
+    <button @click="solveGame">Solve</button>
+    <button @click="toggleDebug" >Debug</button>
+
+
+
+
+    <div class="debugOn" v-show="debugOn">
+      <pre>{{ selectedTiles }}</pre>
+      <p> array length: {{ tiles.length }} </p>
+      <div 
+        class="debugOn-item" 
+        v-for="tile in tiles"
+      > 
+        {{ tile.id }} , position: {{ tile.position }}, 
+      </div>
+    </div>
+
   </div>
 
-
-
-
-  <div class="debugOn" v-show="debugOn">
-    <pre>{{ selectedTiles }}</pre>
-    <p> array length: {{ tiles.length }} </p>
-    <div 
-      class="debugOn-item" 
-      v-for="tile in tiles"
-    > 
-      {{ tile.id }} , position: {{ tile.position }}, 
-    </div>
-    
-  </div>
 
 </template>
 
@@ -236,16 +242,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 body {
   background: #efefef;
+  margin: 0 0;
 }
 
-.wrapper {
-  max-width: 500px;
+.container {
+  margin: 0px auto;
+}
+
+.grid-wrapper {
+  max-width: 400px;
   margin: 10px auto;
+  padding: 5px 25px;
   text-align: center;
 }
 
@@ -268,6 +280,15 @@ button {
   margin: 0 5px 10px 5px;
   cursor: pointer;
 
+}
+
+.game-title {
+  text-transform: uppercase;
+  /* color: #666; */
+  letter-spacing: 0.15em;
+  background: -webkit-linear-gradient(#A784D8, #404877);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Firefox */
