@@ -1,38 +1,33 @@
 <template>
-  <h1>Gradiance</h1>
+  <div class="container">
+    <h1 class="game-title">Gradiance</h1>
 
-  <h2 v-show="gameWon">You win! 😸</h2>
+    <div class="grid-wrapper">
+      <div class="grid">
+        <Tile 
+          v-for="tile in tiles" 
+          :tile="tile" 
+          :key="tile.id"
+          class="tile"
+          @toggle-tile="toggleTile(tile.id)"
+        />
+      </div>
 
-  <button @click="solveGame" style="margin-bottom: 20px;">Solve</button>
-  
-  <div class="grid">
-    <Tile 
-      v-for="tile in tiles" 
-      :tile="tile" 
-      :key="tile.id"
-      class="tile"
-      @toggle-tile="toggleTile(tile.id)"
-    />
-  </div>
-
-
-
-  <div class="debugOn" v-show="debugOn">
-    <pre>{{ selectedTiles }}</pre>
-    <p> array length: {{ tiles.length }} </p>
-    <div 
-      class="debugOn-item" 
-      v-for="tile in tiles"
-    > 
-      {{ tile.id }} , position: {{ tile.position }}, 
     </div>
-    
+
+    <h2 v-show="gameWon">You win! 😸</h2>
+
+    <button @click="playAgain" v-show="gameWon">Play again</button>
+
   </div>
+
 
 </template>
 
 <script>
 import Tile from "./components/Tile.vue"
+import ColorPalettes from "./assets/ColorPalettes.js"
+import LockedTilesPatterns from "./assets/LockedTilesPatterns"
 
 
 export default {
@@ -41,8 +36,10 @@ export default {
   data() {
     return {
       debugOn: false,
+      firstGame: true,
       selectedTiles: [],
       tiles: [],
+      colorPaletteIdx: 0,
     }
   },
   methods: {
@@ -86,23 +83,23 @@ export default {
     generateTiles() {
       let result = []
 
-      const colors = [
-        "#fbef5e", "#F0D363", "#E7B872", "#DD9C84", "#D5819A",
-        "#DAE769", "#D1C972", "#CAAB80", "#C38E90", "#BD71A2",
-        "#BBDF7D", "#B4BF85", "#ADA090", "#A9819C", "#A762AB",
-        "#9CD792", "#95B697", "#9294A1", "#9073AB", "#9052B5",
-        "#80D0A9", "#79ACAE", "#7689B2", "#7566B7", "#7743BF"
-      ]
+      const colors = ColorPalettes[this.colorPaletteIdx]
 
-      const lockedTiles = [
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-      ]
+      if (this.colorPaletteIdx === ColorPalettes.length - 1) {
+        this.colorPaletteIdx = 0
+      } else {
+        this.colorPaletteIdx += 1
+      }
+ 
 
-      let colorIdx = 0
+      let randomIndex = Math.floor(Math.random() * (LockedTilesPatterns.length))
+
+      if (this.firstGame) {
+        randomIndex = 0
+        this.firstGame = false
+      }
+
+      const lockedTiles = LockedTilesPatterns[randomIndex]
 
       for (let i = 0; i < colors.length; i++) {
 
@@ -175,7 +172,6 @@ export default {
 
       }
 
-      console.log("copy", copy)
       return copy
     },
     
@@ -191,6 +187,13 @@ export default {
       this.tiles = result
 
       return result
+    },
+    toggleDebug() {
+      this.debugOn = !this.debugOn
+    },
+    playAgain() {
+      this.selectedTiles = []
+      this.tiles = this.generateTiles()
     }
   },
   computed: {
@@ -220,22 +223,53 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 body {
   background: #efefef;
+  margin: 0 0;
 }
+
+.container {
+  margin: 0px auto;
+}
+
+.grid-wrapper {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 5px 25px;
+  text-align: center;
+}
+
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 0;
+  aspect-ratio: 1 / 1;
+
 }
 
 .tile {
-  /* width: 15vw;
-  height: 15vw; */
+  /* aspect-ratio: 1 / 1; */
+
+}
+
+button {
+  padding: 5px 5px;
+  margin: 0 5px 10px 5px;
+  cursor: pointer;
+
+}
+
+.game-title {
+  text-transform: uppercase;
+  /* color: #666; */
+  letter-spacing: 0.15em;
+  background: -webkit-linear-gradient(#A784D8, #404877);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Firefox */

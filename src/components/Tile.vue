@@ -3,8 +3,6 @@
     @mousedown="toggleTile(tile)"
     :class="{ 'tile': true, 'selected': tile.isSelected, 'locked': tile.isLocked }"
     :style="{ backgroundColor: tile.color }"
-    draggable="true"
-
   > 
     <p class="number" v-if="tile.isLocked">.</p>
     <p class="number" v-else> {{ " " }} </p> 
@@ -32,8 +30,6 @@ export default {
 
 <style>
 .tile {
-  /* width: 15vw;
-  height: 15vw; */
   transition: all .1s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
