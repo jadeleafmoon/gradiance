@@ -5,18 +5,21 @@
 
   <button @click="playAgain" v-show="gameWon">Play again</button>
   <br>
-  <button @click="solveGame">Solve</button>
-  <button @click="toggleDebug" >Debug</button>
+  <!-- <button @click="solveGame">Solve</button>
+  <button @click="toggleDebug" >Debug</button> -->
   
-  <div class="grid">
-    <Tile 
-      v-for="tile in tiles" 
-      :tile="tile" 
-      :key="tile.id"
-      class="tile"
-      @toggle-tile="toggleTile(tile.id)"
-    />
+  <div class="wrapper">
+    <div class="grid">
+      <Tile 
+        v-for="tile in tiles" 
+        :tile="tile" 
+        :key="tile.id"
+        class="tile"
+        @toggle-tile="toggleTile(tile.id)"
+      />
+    </div>
   </div>
+
 
 
 
@@ -103,7 +106,7 @@ export default {
  
 
       let randomIndex = Math.floor(Math.random() * (LockedTilesPatterns.length - 1))
-      
+
       if (this.firstGame) {
         randomIndex = 0
         this.firstGame = false
@@ -240,15 +243,24 @@ body {
   background: #efefef;
 }
 
+.wrapper {
+  max-width: 500px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 0;
+  aspect-ratio: 1 / 1;
+
 }
 
 .tile {
-  /* width: 15vw;
-  height: 15vw; */
+  /* aspect-ratio: 1 / 1; */
+
 }
 
 button {
