@@ -89,7 +89,9 @@ export default {
     generateTiles() {
       let result = []
 
-      const colors = colorPalettes[2]
+      const randomIndex = Math.floor(Math.random() * (colorPalettes.length - 1))
+      
+      const colors = colorPalettes[randomIndex]
 
       const lockedTiles = [
         1, 1, 1, 1, 1,
