@@ -9,13 +9,13 @@
           :tile="tile" 
           :key="tile.id"
           class="tile"
-          @toggle-tile="toggleTile(tile.id)"
+          @toggle-tile="toggleTile"
         />
       </div>
 
     </div>
 
-    <h2 v-show="gameWon">You win! 😸</h2>
+    <h2 v-show="gameWon">Wonderful! 😸</h2>
 
     <button @click="playAgain" v-show="gameWon">Play again</button>
 
@@ -62,6 +62,7 @@ export default {
       this.selectedTiles = []
     },
     toggleTile(targetId) {
+      console.log(targetId)
       for (const currentTile of this.tiles) {
         if (targetId === currentTile.id) {
           if(currentTile.isSelected) {
