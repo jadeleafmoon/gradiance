@@ -1,4 +1,4 @@
-# Welcome to Gradience!
+
 
 <div align="center">
     <img src="./src/assets/gradiance01.jpg" width="300px">
@@ -7,7 +7,7 @@
 
 ## What is Gradience?
 
-Gradience is a relaxing puzzle game.
+Gradiance is a relaxing puzzle game.
 
 
 
@@ -35,7 +35,7 @@ Vue 3, JavaScript, HTML, and CSS.
 
 
 
-## Project setup
+## Installation
 
 Clone the repo to your local machine, and follow these steps.
 
