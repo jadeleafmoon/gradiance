@@ -17,7 +17,7 @@
 
     <h2 v-show="gameWon">Wonderful! 😸</h2>
 
-    <button @click="playAgain" v-show="gameWon">Play again</button>
+    <button @click="playAgain" class="button">Play again</button>
 
   </div>
 
@@ -125,28 +125,23 @@ export default {
     },
     shuffleArray(arr) {
       let copy = arr.slice()
-
       for (let i = 0; i < copy.length; i++) {
         const randomIndex = Math.floor(Math.random() * arr.length)
 
         let temp = copy[i]
         copy[i] = copy[randomIndex]
         copy[randomIndex] = temp
-
       }
-
+      
       return copy
     },
     shuffleTiles(arr, lockedTiles) {
-
-
       let result = []
       let copy = arr.slice()
 
       for (let i = 0; i < copy.length; i++) {
         let isLocked = lockedTiles[i] === 1
 
-        
         if (!isLocked) {
           let swapped = false
           // swap with random unlocked tile
@@ -166,15 +161,11 @@ export default {
               swapped = true
             } 
           }
-          
-
         }
-
       }
 
       return copy
     },
-    
     solveGame() {
       let result = []
 
@@ -251,13 +242,8 @@ body {
   aspect-ratio: 1 / 1;
 }
 
-.tile {
-  /* aspect-ratio: 1 / 1; */
-
-}
-
-button {
-  padding: 5px 5px;
+.button {
+  padding: 10px 10px;
   margin: 0 5px 10px 5px;
   cursor: pointer;
 
@@ -266,7 +252,6 @@ button {
 .game-title {
   font-size: 2.5em;
   text-transform: uppercase;
-  /* color: #666; */
   letter-spacing: 0.15em;
   background: -webkit-linear-gradient(#A784D8, #404877);
   -webkit-background-clip: text;
