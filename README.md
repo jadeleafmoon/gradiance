@@ -7,13 +7,19 @@
 
 ## What is Gradience?
 
-Gradience is a relaxing puzzle game .
+Gradience is a relaxing puzzle game.
 
 
 
 ### How to Play?
 
-Click on two tiles to swap them. Sort the tiles so that the result is smooth color gradient.
+Click on two tiles to swap them. Sort the tiles so that the result is smooth color gradient. 
+
+It can be played on both desktop and mobile devices.
+
+<div align="center">
+    <img src="./src/assets/gradiance-vid01.gif" width="300px">
+</div>
 
 
 
@@ -46,3 +52,7 @@ To run the game locally:
 ```
 npm run serve
 ```
+
+
+
+This game best runs on web browsers on a computer.
