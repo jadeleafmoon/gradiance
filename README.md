@@ -9,7 +9,7 @@
 
 Gradiance is a relaxing puzzle game.
 
-🖥  **[Play it now](https://gradiance.netlify.app/)**
+🖥  **[Play it now](https://gradiance.ca/)**
 
  
 
