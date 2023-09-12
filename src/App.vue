@@ -62,7 +62,6 @@ export default {
       this.selectedTiles = []
     },
     toggleTile(targetId) {
-      console.log(targetId)
       for (const currentTile of this.tiles) {
         if (targetId === currentTile.id) {
           if(currentTile.isSelected) {
