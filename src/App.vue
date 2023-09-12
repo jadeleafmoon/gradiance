@@ -17,7 +17,7 @@
 
     <h2 v-show="gameWon">Wonderful! 😸</h2>
 
-    <button @click="playAgain" class="button">Play again</button>
+    <button @click="playAgain" class="button" v-show="gameWon">Play again</button>
 
   </div>
 
@@ -132,7 +132,7 @@ export default {
         copy[i] = copy[randomIndex]
         copy[randomIndex] = temp
       }
-      
+
       return copy
     },
     shuffleTiles(arr, lockedTiles) {
