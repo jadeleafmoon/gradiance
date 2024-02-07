@@ -2,6 +2,8 @@
   <div class="container">
     <h1 class="game-title">Gradiance</h1>
 
+    <h2>Sort the colors to create a gradiant.</h2>
+
     <div class="grid-wrapper">
       <div class="grid">
         <Tile 
