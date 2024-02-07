@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="game-title">Gradiance</h1>
-
-    <h2>Sort the colors to create a gradiant.</h2>
+    
+    <h3>Sort the colors into a gradiant.</h3>
 
     <div class="grid-wrapper">
       <div class="grid">
